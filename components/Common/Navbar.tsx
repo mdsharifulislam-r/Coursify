@@ -107,10 +107,10 @@ const user = useAppSelector(state=>state.userReduicer.user)
       {/* component */}
       <nav className="w-full z-[1000] bg-white shadow md:block hidden ">
         <div className=" place-items-center bg-white px-4 mx-auto justify-between lg:max-w-7xl md:items-center md:flex md:px-8">
-<div className="logo w-16 mt-3 relative">
+<Link href={"/"} className="logo w-16 mt-3 relative cursor-pointer">
 <Image src={logo} alt="logo" width={1000} height={1000} priority={false} className=""/>
 
-</div>
+</Link>
 <div className="">
 <SearchBar/>
 </div>

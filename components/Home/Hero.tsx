@@ -6,6 +6,7 @@ import girlImage from "@/assets/Home/girl.webp"
 import RedBox from "@/assets/Home/redbox.webp"
 import greenBox from "@/assets/Home/greenbox.webp"
 import FloatingBg from '../Common/FloatingBg/FloatingBg'
+import Link from 'next/link'
 interface props{
   width:number,
   left?:string,
@@ -29,8 +30,8 @@ export default function Hero () {
   
         <h1 className='lg:text-6xl md:text-5xl text-5xl font-bold leading-[1.2] text-darkBlack' data-aos="fade-right">Get  <span className='text-primary'>2500+</span> Best Online Courses From <span className='text-secondary'>Coursify</span> </h1>
         <p className='text-xl py-3 text-slate-600 ' data-aos="fade-left">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit.</p>
-        <div className="button" data-aos="fade-right">
-            <button className=' rounded-md gap-4 bg-primary text-white text-lg px-7 py-4 flex justify-center place-items-center'>Find Course <FaArrowRight/></button>
+        <div className="butto" data-aos="fade-right">
+            <Link href={"/courses"} className='flex cursor-pointer rounded-md gap-4 bg-primary text-white text-lg px-7 py-4 w-fit justify-center place-items-center'>Find Course <FaArrowRight/></Link>
         </div>
       </div>
       <div className="imageBox lg:w-[40%] md:w-1/2 w-full h-full z-[2] relative " >

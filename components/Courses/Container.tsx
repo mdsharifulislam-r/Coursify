@@ -4,9 +4,7 @@ import CourseCard, { CourseType } from "./CourseCard/CourseCard";
 import { getCourse } from "@/lib/Helper/getCourse";
 import { searchObject } from "@/app/(pages)/courses/page";
 
-import filterCourses from "../Hooks/filterCourses";
-import { getStudentInfo } from "@/lib/Helper/getStudent";
-import { cookies } from "next/headers";
+
 import Pegination from "./Pegination";
 
 export default async function Container({
@@ -16,27 +14,13 @@ export default async function Container({
   searchData: searchObject;
   active:string
 }) {
-  const token = cookies().get('token')?.value
+
 
   const courses: CourseType[] = await getCourse();       
-  const user = await getStudentInfo(['intrestTypes'])
-  const arr:string[] = user?.intrestTypes
-  const intrest =token ? arr?.map(item=>item.split(" ").join("_").toLowerCase()):[]
-  const filter = !searchData.catagories.length && !searchData.instructors.length && !searchData.level.length && !searchData.id && !searchData.text && !searchData.price
+
   
-  
-  const choice =filter? {
-    catagories:intrest,
-    level:[],
-    instructors:[],
-    price:"",
-    id:"",
-    text:""
-  }:searchData
-  let tempcourse:CourseType[] = filterCourses(choice,courses);
-  
-  const data = courses
-    ? tempcourse?.map((course) => {
+
+  const data = courses?.map((course) => {
         return (
           <CourseCard
             key={course._id}
@@ -55,7 +39,7 @@ export default async function Container({
           />
         );
       })
-    : [];
+    
 
   return (
     <div className=" lg:w-[75%] md:w-[75%] w-full lg:pl-4 md:px-2 py-2">
