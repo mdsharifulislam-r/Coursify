@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 ConnectDB().then()
 export async function POST(Request:Request) {
     try {
+        await ConnectDB()
         const {payload}:{payload:string}= await Request.json()
         if(!payload){
             return NextResponse.json({
@@ -47,6 +48,7 @@ export async function POST(Request:Request) {
 
 export async function GET(Request:Request){
     try {
+        await ConnectDB()
         const data = await OrderModel.find()
         if(data?.length){
             return NextResponse.json({

@@ -9,6 +9,7 @@ import { NextResponse } from "next/server";
 ConnectDB().then()
 export async function GET(Requset: Request) {
   try {
+    await ConnectDB()
     const data = await StudentModel.find(
       {},
       { password: 0, isSocialLogin: 0, _id: 0 }
@@ -39,6 +40,7 @@ export async function GET(Requset: Request) {
 
 export async function POST(Request: Request) {
   try {
+    await ConnectDB()
     const {
       name,
       email,

@@ -11,6 +11,7 @@ import { cookies } from "next/headers";
 ConnectDB().then()
 export async function GET(Request: Request, { params }: {params:{id:string}}) {
   try {
+    await ConnectDB()
     const { id } = params;
   
    
@@ -63,6 +64,7 @@ export async function GET(Request: Request, { params }: {params:{id:string}}) {
 
 export async function PUT(Request:NextRequest){
     try{
+      await ConnectDB()
     const token =cookies().get("token")?.value
     if(token==undefined){
       return NextResponse.json({
@@ -154,6 +156,7 @@ export async function PUT(Request:NextRequest){
 
 export async function POST(Requset:Request) {
   try {
+    await ConnectDB()
     const {email,password,isSocialLogin}:InstructorType = await Requset.json()
   
     

@@ -5,6 +5,7 @@ import jwt from "jwt-simple"
 ConnectDB().then()
 export async function GET(Request:Request,{params}:{params:{id:string}}) {
     try {
+        await ConnectDB()
         const {id} = params
         const data = await OrderModel.find({userId:id})
         if(!data){
@@ -31,6 +32,7 @@ export async function GET(Request:Request,{params}:{params:{id:string}}) {
 
 export async function DELETE(Request:Request,{params}:{params:{id:string}}) {
 try {
+    await ConnectDB()
     const {id} = params
     const orderId = jwt.decode(id,process.env.JWT_SECRET!)
     if(!orderId){

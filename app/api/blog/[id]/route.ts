@@ -5,6 +5,7 @@ import { ConnectDB } from "@/lib/Database/ConnectDB";
 ConnectDB().then()
 export async function GET(Request:Request,{params}:{params:{id:string}}) {
     try {
+        await ConnectDB()
         const {id} = params
         const data = await BlogModel.findOne({_id:id})
         if(!data){
@@ -30,6 +31,7 @@ export async function GET(Request:Request,{params}:{params:{id:string}}) {
 
 export async function PUT(Request:Request,{params}:{params:{id:string}}) {
     try {
+        await ConnectDB()
         const {id} = params
         const {payload}= await Request.json()
         const isExist = await BlogModel.findOne({_id:id})
@@ -80,6 +82,7 @@ export async function PUT(Request:Request,{params}:{params:{id:string}}) {
 
 export async function DELETE(Request:Request,{params}:{params:{id:string}}) {
     try {
+        await ConnectDB()
         const {id} = params
         const data = await BlogModel.findOneAndDelete({_id:id})
         if(!data){

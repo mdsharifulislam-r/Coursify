@@ -6,6 +6,7 @@ ConnectDB().then()
 export const dynamic = "force-dynamic"
 export async function POST(Request:Request){
     try {
+        await ConnectDB()
         const {name,desc,publishDate,author,image,tags}:BlogType = await Request.json()
         if(name&&desc&&publishDate&&author&&image&&tags){
             const res = await BlogModel.create({name,desc,publishDate,author,image,tags})
@@ -32,6 +33,7 @@ export async function POST(Request:Request){
 
 export async function GET(Request:Request) {
     try {
+        await ConnectDB()
         const data = await BlogModel.find()
         if(!data){
             return NextResponse.json({

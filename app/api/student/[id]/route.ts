@@ -11,6 +11,7 @@ import { revalidatePath } from "next/cache";
 ConnectDB().then()
 export async function GET(Requset:NextRequest,{params}:{params:{id:string}}) {
   try {
+    await ConnectDB()
     const {id}= params
     
     const arr = id !=='single'? id.split(','):[]
@@ -49,6 +50,7 @@ export async function GET(Requset:NextRequest,{params}:{params:{id:string}}) {
 
 export async function POST(Request: Request) {
   try {
+    await ConnectDB()
     const { email, password, isSocialLogin }: Student = await Request.json();
 
 
@@ -147,6 +149,7 @@ export async function POST(Request: Request) {
 
 export async function PUT(Request: NextRequest) {
   try {
+    await ConnectDB()
     const { payload }: { payload: string } = await Request.json();
     const token = cookies().get("token")?.value;
     if (!token) {

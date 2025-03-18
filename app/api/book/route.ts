@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 ConnectDB().then()
 export async function POST(Request:Request){
     try {
+        await ConnectDB()
         const {payload}:{payload:string}= await Request.json()
         const {name,price,instructor,image,level,publishDate,description,type}:Booktype = jwt.decode(payload,process.env.JWT_SECRET!)
   
@@ -47,6 +48,7 @@ export async function POST(Request:Request){
 
 export async function GET(Request:Request){
     try {
+        await ConnectDB()
         const data = await BookModel.find({},{promocodes:0})
         if(data==undefined){
             return NextResponse.json({

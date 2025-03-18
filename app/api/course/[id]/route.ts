@@ -5,9 +5,10 @@ import { NextResponse } from "next/server";
 import jwt from "jwt-simple";
 import { CourseType } from "@/components/Courses/CourseCard/CourseCard";
 import { Student } from "@/lib/Types/Types";
-ConnectDB().then()
+
 export async function GET(Request: Request, { params }: Params) {
   try {
+    await ConnectDB()
     const { id } = params;
     if (id) {
       const singleCourse = await CourseModel.findOne({ _id: id },{promocodes:0});
@@ -62,6 +63,7 @@ export async function GET(Request: Request, { params }: Params) {
 
 export async function PUT(Request: Request) {
   try {
+    await ConnectDB()
     const { payload }: { payload: string } = await Request.json();
     if (!payload) {
       return NextResponse.json({

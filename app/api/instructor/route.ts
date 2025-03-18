@@ -11,6 +11,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(Request: Request) {
   try {
+    await ConnectDB()
     const instructors = await InstructorModel.find({},{password:0,isSocialLogin:0});
     if (instructors) {
       return NextResponse.json(
@@ -45,6 +46,7 @@ export async function GET(Request: Request) {
 
 export async function POST(Request: Request) {
   try {
+    await ConnectDB()
     const { name, image, title, desc,password,email,type,phone}:InstructorType= await Request.json();
  
    
@@ -104,7 +106,7 @@ export async function POST(Request: Request) {
 }
 export async function PUT(Request:NextRequest){
   try{
-  
+    await ConnectDB()
   const {payload}:{payload:string}= await Request.json()
   const formData = jwt.decode(payload,process.env.JWT_SECRET||"")
 

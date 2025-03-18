@@ -5,7 +5,9 @@ import { ConnectDB } from "@/lib/Database/ConnectDB";
 ConnectDB().then()
 export async function GET(Request:Request,{params}:{params:{id:string}}){
     try {
+        await ConnectDB()
         const {id} = params
+
         const data = await BookModel.findOne({_id:id},{promocodes:0})
         if(!data){
             return NextResponse.json({

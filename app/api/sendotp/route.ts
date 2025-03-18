@@ -30,6 +30,7 @@ const transport = nodeMailer.createTransport({
 })  
 export async function POST(Request:Request){
     try {
+        await ConnectDB()
         const {payload}:{payload:string} = await Request.json()
         const {email}:{otp:number,email:string}= jwt.decode(payload,process.env.JWT_SECRET!)
         const exist = await StudentModel.findOne({email:email}) || await InstructorModel.findOne({email:email})
