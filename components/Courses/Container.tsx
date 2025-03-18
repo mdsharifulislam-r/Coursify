@@ -3,7 +3,7 @@ import TopSecton from "./SideBar/TopSecton";
 import CourseCard, { CourseType } from "./CourseCard/CourseCard";
 import { getCourse } from "@/lib/Helper/getCourse";
 import { searchObject } from "@/app/(pages)/courses/page";
-
+import filterCourses from '../Hooks/filterCourses'
 
 import Pegination from "./Pegination";
 
@@ -16,7 +16,7 @@ export default async function Container({
 }) {
 
 
-  const courses: CourseType[] = await getCourse();       
+  const courses: CourseType[] = filterCourses(searchData,await getCourse())   
 
   
 

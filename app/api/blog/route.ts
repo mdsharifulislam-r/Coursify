@@ -2,7 +2,7 @@ import { ConnectDB } from "@/lib/Database/ConnectDB";
 import { BlogModel } from "@/lib/Database/Models";
 import { BlogType } from "@/lib/Types/Types";
 import { NextResponse } from "next/server";
-ConnectDB().then()
+
 export const dynamic = "force-dynamic"
 export async function POST(Request:Request){
     try {

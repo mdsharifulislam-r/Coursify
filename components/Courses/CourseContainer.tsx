@@ -4,6 +4,7 @@ import Container from './Container'
 import { searchObject } from '@/app/(pages)/courses/page'
 import { Submit } from '@/lib/Helper/CourseFilter'
 import CourseCardSkeliton from "@/components/LoadingSection/CourseCardSkeliton"
+
 export default function CourseContainer({searchData,active}:{searchData:searchObject,active:string}) {
 
   
