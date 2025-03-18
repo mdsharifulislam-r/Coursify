@@ -7,9 +7,10 @@ import { cookies } from "next/headers";
 import { InstructoScema } from "@/lib/Database/instructorSchema/InstructorSchema";
 import { InstructorType } from "@/lib/Types/Types";
 import { revalidateTag } from "next/cache";
-ConnectDB().then()
+
 export async function POST(Request: Request) {
   try {
+    await ConnectDB()
     const token = cookies().get("token")?.value
     const {payload}:{payload:string} = await Request.json();
     if(!token){
@@ -116,6 +117,7 @@ export async function POST(Request: Request) {
 }
 export async function GET(Request: Request) {
   try {
+    await ConnectDB()
     const allcourse = await CourseModel.find()
     if(allcourse){
         return NextResponse.json({
@@ -144,6 +146,7 @@ export async function GET(Request: Request) {
 
 export async function PUT(Request:Request) {
   try {
+    await ConnectDB()
     const {payload,id}:{payload:string,id:string} = await Request.json()
     if(!payload && !id){
       return NextResponse.json({
