@@ -32,7 +32,7 @@
     "jsonwebtoken": "^9.0.2",
     "jwt-simple": "^0.5.6",
     "mongoose": "^8.5.3",
-    "next": "14.2.5",
+    "next": "14.2.35",
     "next-auth": "^5.0.0-beta.20",
     "next-cloudinary": "^6.10.1",
     "nodemailer": "^6.9.15",
